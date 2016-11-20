@@ -18,7 +18,7 @@ namespace Crossroads.Persistence
 
         public IEnumerable<TransactionType> GetAll(bool? excludeBackouts = true)
         {
-            var query = this.context.TransactionTypes.AsQueryable();
+            var query = this.context.TransactionTypes.Where(x => x.Active == true);
 
             if (excludeBackouts == true)
             {
