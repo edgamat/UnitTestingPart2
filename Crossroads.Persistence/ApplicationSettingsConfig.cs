@@ -14,7 +14,7 @@ namespace Crossroads.Persistence
             var settings = new NameValueCollection();
 
             settings[ApplicationSettingsConfig.ConnectionStringsCrossroadsContext] =
-                "Server=(LocalDB)\v11.0;Database=Crossroads1_1;Trusted_Connection=True;";
+                "Server=(LocalDB)\\v11.0;Database=Crossroads1_1;Trusted_Connection=True;";
 
             MobiusConfiguration.UseSettings(settings);
         }

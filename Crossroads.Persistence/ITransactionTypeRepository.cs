@@ -11,5 +11,11 @@ namespace Crossroads.Persistence
         IEnumerable<TransactionType> GetAll(bool? excludeBackouts = true);
 
         TransactionType Find(string key);
+
+        void Insert(TransactionType item);
+
+        void Delete(string key);
+
+        void Update(TransactionType item);
     }
 }

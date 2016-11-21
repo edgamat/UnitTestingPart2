@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Domain", "Crossr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Persistence", "Crossroads.Persistence\Crossroads.Persistence.csproj", "{4C7DF827-699B-481B-8F2C-0D3CD413771E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AA5E2B7A-3BCF-4424-A88A-BD8E55930BC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Persistence.Tests", "test\Crossroads.Persistence.Tests\Crossroads.Persistence.Tests.csproj", "{2D270221-E16A-4E66-B86E-9C9E199E17AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +38,10 @@ Global
 		{4C7DF827-699B-481B-8F2C-0D3CD413771E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C7DF827-699B-481B-8F2C-0D3CD413771E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C7DF827-699B-481B-8F2C-0D3CD413771E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D270221-E16A-4E66-B86E-9C9E199E17AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D270221-E16A-4E66-B86E-9C9E199E17AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D270221-E16A-4E66-B86E-9C9E199E17AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D270221-E16A-4E66-B86E-9C9E199E17AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +50,6 @@ Global
 		{A87526E1-618D-4E58-BAC7-75BF93BA7472} = {0393E2CB-9C80-44FC-9C7C-854B21EC43A5}
 		{3CBF5086-5FCF-42E9-BCA5-B342BF574E08} = {0393E2CB-9C80-44FC-9C7C-854B21EC43A5}
 		{4C7DF827-699B-481B-8F2C-0D3CD413771E} = {0393E2CB-9C80-44FC-9C7C-854B21EC43A5}
+		{2D270221-E16A-4E66-B86E-9C9E199E17AD} = {AA5E2B7A-3BCF-4424-A88A-BD8E55930BC4}
 	EndGlobalSection
 EndGlobal

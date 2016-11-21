@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace Crossroads.Persistence
 {
     public class TransactionTypeRepository : ITransactionTypeRepository
     {
-        private readonly CrossroadsContext context;
+        private readonly ICrossroadsContext context;
 
-        public TransactionTypeRepository(CrossroadsContext context)
+        public TransactionTypeRepository(ICrossroadsContext context)
         {
             this.context = context;
         }
@@ -36,6 +37,33 @@ namespace Crossroads.Persistence
             var item = query.FirstOrDefault();
 
             return item;
+        }
+
+        public void Insert(TransactionType item)
+        {
+            this.context.TransactionTypes.Add(item);
+            this.context.SaveChanges();
+        }
+
+        public void Delete(string key)
+        {
+            var item = this.Find(key);
+            if (item != null)
+            {
+                this.context.TransactionTypes.Remove(item);
+                this.context.SaveChanges();
+            }
+        }
+
+        public void Update(TransactionType item)
+        {
+            if (this.context.Entry(item).State == EntityState.Detached)
+            {
+                this.context.TransactionTypes.Attach(item);
+                this.context.Entry(item).State = EntityState.Modified;
+            }
+
+            this.context.SaveChanges();
         }
     }
 }
