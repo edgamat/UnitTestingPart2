@@ -1,0 +1,29 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "buildOptions": {
+    "platform": "anycpu"
+  },
+
+  "dependencies": {
+    "Microsoft.AspNetCore.Mvc": "1.0.1",
+    "Crossroads.Web": "1.0.0-*",
+    "Moq": "4.5.28",
+    "xunit": "2.1.0",
+    "xunit.runner.console": "2.1.0",
+    "xunit.runner.visualstudio": "2.1.0"
+  },
+
+  "frameworks": {
+    "net461": {
+      "dependencies": {
+        "Crossroads.Domain": {
+          "target": "project"
+        },
+        "Crossroads.Persistence": {
+          "target": "project"
+        }
+      }
+    }
+  }
+}

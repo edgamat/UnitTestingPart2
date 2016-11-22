@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0393E2CB-9C8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{30D21D42-B3B3-4237-AB24-100F30D29E50}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		global.json = global.json
 	EndProjectSection
 EndProject
@@ -19,6 +21,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AA5E2B7A-3BCF-4424-A88A-BD8E55930BC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crossroads.Persistence.Tests", "test\Crossroads.Persistence.Tests\Crossroads.Persistence.Tests.csproj", "{2D270221-E16A-4E66-B86E-9C9E199E17AD}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Crossroads.Web.Tests2", "test\Crossroads.Web.Tests2\Crossroads.Web.Tests2.xproj", "{EA46F95F-7E53-4EA5-9C7A-278A833F6DD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +46,10 @@ Global
 		{2D270221-E16A-4E66-B86E-9C9E199E17AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D270221-E16A-4E66-B86E-9C9E199E17AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D270221-E16A-4E66-B86E-9C9E199E17AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA46F95F-7E53-4EA5-9C7A-278A833F6DD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA46F95F-7E53-4EA5-9C7A-278A833F6DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA46F95F-7E53-4EA5-9C7A-278A833F6DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA46F95F-7E53-4EA5-9C7A-278A833F6DD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +59,6 @@ Global
 		{3CBF5086-5FCF-42E9-BCA5-B342BF574E08} = {0393E2CB-9C80-44FC-9C7C-854B21EC43A5}
 		{4C7DF827-699B-481B-8F2C-0D3CD413771E} = {0393E2CB-9C80-44FC-9C7C-854B21EC43A5}
 		{2D270221-E16A-4E66-B86E-9C9E199E17AD} = {AA5E2B7A-3BCF-4424-A88A-BD8E55930BC4}
+		{EA46F95F-7E53-4EA5-9C7A-278A833F6DD4} = {AA5E2B7A-3BCF-4424-A88A-BD8E55930BC4}
 	EndGlobalSection
 EndGlobal

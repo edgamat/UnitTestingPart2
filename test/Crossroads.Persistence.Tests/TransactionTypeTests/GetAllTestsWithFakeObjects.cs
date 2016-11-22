@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Crossroads.Domain;
 using Moq;
 using Xunit;
@@ -15,24 +13,47 @@ namespace Crossroads.Persistence.Tests.TransactionTypeTests
     {
         private ITestOutputHelper output;
 
-        private CrossroadsContextFactory factory;
+        private ICrossroadsContext context;
 
-        private CrossroadsContext context;
+        private List<TransactionType> data;
 
         public GetAllTestsWithFakeObjects(ITestOutputHelper output)
         {
             this.output = output;
-            this.factory = new CrossroadsContextFactory();
 
-            var fakeContext = new Mock<CrossroadsContext>("name=DefaultConnection");
+            var fakeContext = new Mock<ICrossroadsContext>();
 
-            var data = new List<TransactionType>();
-            data.Add(new TransactionType { Abbreviation = "N", BackOutType = false, Active = true, Name = "New Business" });
-            data.Add(new TransactionType { Abbreviation = "BN", BackOutType = true, Active = true, Name = "Backout of New Business" });
+            var fakeDbSet = new Mock<DbSet<TransactionType>>();
 
-            var mockSet = data.CreateMockSet();
+            this.data = new List<TransactionType>();
+            this.data.Add(new TransactionType { Abbreviation = "N", BackOutType = false, Active = true, Name = "New Business", Id = 1 });
+            this.data.Add(new TransactionType { Abbreviation = "BN", BackOutType = true, Active = true, Name = "Backout of New Business", Id = 2 });
 
-            fakeContext.Setup(x => x.TransactionTypes).Returns(mockSet.Object);
+            var source = this.data.AsQueryable();
+
+            fakeDbSet.As<IQueryable<TransactionType>>().Setup(x => x.Provider).Returns(source.Provider);
+            fakeDbSet.As<IQueryable<TransactionType>>().Setup(x => x.Expression).Returns(source.Expression);
+            fakeDbSet.As<IQueryable<TransactionType>>().Setup(x => x.ElementType).Returns(source.ElementType);
+            fakeDbSet.As<IQueryable<TransactionType>>().Setup(x => x.GetEnumerator()).Returns(source.GetEnumerator());
+
+            fakeDbSet.Setup(x => x.AsNoTracking()).Returns(fakeDbSet.Object);
+
+            fakeContext.Setup(x => x.TransactionTypes).Returns(fakeDbSet.Object);
+
+            fakeDbSet.Setup(x => x.Add(It.IsAny<TransactionType>())).Returns((TransactionType x) =>
+            {
+                var maxId = this.data.Max(d => d.Id);
+
+                x.Id = maxId + 1;
+
+                return x;
+            });
+
+            fakeContext.Setup(x => x.SaveChanges()).Returns(() =>
+            {
+                return 1;
+            });
+
 
             this.context = fakeContext.Object;
         }
@@ -59,6 +80,22 @@ namespace Crossroads.Persistence.Tests.TransactionTypeTests
             var allTypes = repository.GetAll(excludeBackouts: false);
 
             Assert.Equal(2, allTypes.Count());
+        }
+
+        [Fact]
+        public void WhenAdding_NewIdIsGenerated()
+        {
+            var context = this.context;
+
+            var repository = new TransactionTypeRepository(context);
+
+            var item = new TransactionType { Abbreviation = "X", Active = true, BackOutType = false, Name = "Extension" };
+
+            repository.Insert(item);
+
+            this.output.WriteLine("{0}", item.Id);
+
+            Assert.True(item.Id > 0);
         }
     }
 }

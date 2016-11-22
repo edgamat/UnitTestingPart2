@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Crossroads.Domain;
 using Crossroads.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +31,7 @@ namespace Crossroads.Web
         {
             // Add framework services.
             services.AddMvc();
-            services.AddScoped<CrossroadsContext>(_ => new CrossroadsContext(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<ICrossroadsContext>(_ => new CrossroadsContext(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ITransactionTypeRepository, TransactionTypeRepository>();
         }
 
@@ -42,6 +43,8 @@ namespace Crossroads.Web
             if (env.IsDevelopment())
             {
                 loggerFactory.AddDebug(LogLevel.Debug);
+                app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
             }
             else
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Crossroads.Domain;
@@ -19,12 +20,21 @@ namespace Crossroads.Persistence
 
         public IEnumerable<TransactionType> GetAll(bool? excludeBackouts = true)
         {
-            var query = this.context.TransactionTypes.Where(x => x.Active == true);
+            var query = this.context.TransactionTypes
+                .AsNoTracking()
+                .Where(x => x.Active == true);
 
             if (excludeBackouts == true)
             {
                 query = query.Where(x => x.BackOutType == false);
             }
+
+            return query.ToList();
+        }
+
+        public IEnumerable<TransactionType> Search(Expression<Func<TransactionType, bool>> filter)
+        {
+            var query = this.context.TransactionTypes.Where(filter);
 
             return query.ToList();
         }
